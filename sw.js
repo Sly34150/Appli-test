@@ -1,4 +1,4 @@
-const CACHE_NAME = "gymsimple-v2";
+const CACHE_NAME = "gymsimple-v3";
 const APP_FILES = ["./index.html", "./illustrations.js", "./manifest.webmanifest", "./icon.svg"];
 
 self.addEventListener("install", event => {
