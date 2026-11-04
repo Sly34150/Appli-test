@@ -41,11 +41,18 @@
     bike: "M124 54Q138 48 146 59"
   };
 
+  const targets = {
+    chest: "chest", incline: "chest", shoulder: "shoulders", pecdeck: "chest",
+    pulldown: "back", row: "back", reverse: "rearShoulders", cable: "rearShoulders",
+    biceps: "biceps", triceps: "triceps", crunch: "core", back: "back",
+    lateral: "shoulders", pallof: "core", bike: "legs"
+  };
+
   const stylesheet = `
-    .paper{fill:#e9e4d8}.grain{fill:url(#hatch)}.ink{fill:none;stroke:#354446;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}.echo{fill:none;stroke:#52605b;stroke-width:1;opacity:.48;stroke-linecap:round;stroke-linejoin:round}.frame{fill:none;stroke:url(#steel);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.rail-fill{fill:url(#steel);stroke:#354446;stroke-width:1.6;stroke-linejoin:round}.pad{fill:url(#vinyl);stroke:#354446;stroke-width:1.5;stroke-linejoin:round}.cable{fill:none;stroke:#685f4c;stroke-width:1.5;stroke-linecap:round}.bolt{fill:#c36e52;stroke:#354446;stroke-width:1.3}.wheel{fill:#d7d1c2;stroke:#354446;stroke-width:2}.body{fill:url(#shirt);stroke:#354446;stroke-width:2;stroke-linejoin:round}.skin{fill:url(#skin);stroke:#354446;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.limb{fill:none;stroke:url(#skin);stroke-width:11;stroke-linecap:round;stroke-linejoin:round}.limb-back{fill:none;stroke:#aa7858;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}.limb-line{fill:none;stroke:#8c5944;stroke-width:1.4;stroke-linecap:round;opacity:.9}.hand{fill:url(#skin);stroke:#354446;stroke-width:1.3}.pants{fill:none;stroke:#405353;stroke-width:12;stroke-linecap:round;stroke-linejoin:round}.pants-line{fill:none;stroke:#82918a;stroke-width:1.1;stroke-linecap:round;opacity:.8}.shoe{fill:#c46c53;stroke:#354446;stroke-width:1.6;stroke-linejoin:round}.motion{fill:none;stroke:#c45f49;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:3 4}.shade{fill:#314143;opacity:.16}.scribble{fill:none;stroke:#354446;stroke-width:.7;opacity:.32;stroke-linecap:round}.`;
+    .paper{fill:#fff}.grain{fill:url(#hatch);opacity:.2}.ink{fill:none;stroke:#343a3b;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}.echo{fill:none;stroke:#52605b;stroke-width:1;opacity:.38;stroke-linecap:round;stroke-linejoin:round}.frame{fill:none;stroke:url(#steel);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.rail-fill{fill:url(#steel);stroke:#424849;stroke-width:1.6;stroke-linejoin:round}.pad{fill:url(#vinyl);stroke:#343a3b;stroke-width:1.5;stroke-linejoin:round}.cable{fill:none;stroke:#555b5a;stroke-width:1.5;stroke-linecap:round}.bolt{fill:#c8ccca;stroke:#343a3b;stroke-width:1.3}.wheel{fill:#e8e9e7;stroke:#343a3b;stroke-width:2}.body{fill:url(#skin);stroke:#343a3b;stroke-width:2;stroke-linejoin:round}.skin{fill:url(#skin);stroke:#343a3b;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.limb{fill:none;stroke:url(#skin);stroke-width:11;stroke-linecap:round;stroke-linejoin:round}.limb-back{fill:none;stroke:#a9775b;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}.limb-line{fill:none;stroke:#775342;stroke-width:1.25;stroke-linecap:round;opacity:.9}.hand{fill:url(#skin);stroke:#343a3b;stroke-width:1.3}.pants{fill:none;stroke:#4c5050;stroke-width:12;stroke-linecap:round;stroke-linejoin:round}.pants-line{fill:none;stroke:#a5aaa8;stroke-width:1.1;stroke-linecap:round;opacity:.8}.shoe{fill:#e8e9e7;stroke:#343a3b;stroke-width:1.6;stroke-linejoin:round}.muscle{fill:url(#active-muscle);stroke:#a94c37;stroke-width:1;stroke-linejoin:round}.muscle-shade{fill:#d85e42;opacity:.72}.muscle-line{fill:none;stroke:#f6b49b;stroke-width:.8;stroke-linecap:round;opacity:.9}.motion{fill:none;stroke:#d55338;stroke-width:2.8;stroke-linecap:round;stroke-dasharray:3 4}.shade{fill:#202829;opacity:.14}.scribble{fill:none;stroke:#343a3b;stroke-width:.7;opacity:.3;stroke-linecap:round}.`;
 
   function defs(prefix) {
-    return `<defs><linearGradient id="${prefix}-steel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9ba49a"/><stop offset=".45" stop-color="#596a66"/><stop offset="1" stop-color="#3a4948"/></linearGradient><linearGradient id="${prefix}-vinyl" x1="0" y1="0" x2="0.8" y2="1"><stop stop-color="#89928a"/><stop offset="1" stop-color="#4d5c59"/></linearGradient><linearGradient id="${prefix}-shirt" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#83aaa0"/><stop offset=".58" stop-color="#527a73"/><stop offset="1" stop-color="#344e4c"/></linearGradient><linearGradient id="${prefix}-skin" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e1b992"/><stop offset=".55" stop-color="#c89069"/><stop offset="1" stop-color="#a9684e"/></linearGradient><pattern id="${prefix}-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><path d="M0 0V7" stroke="#65716a" stroke-width=".6" opacity=".28"/></pattern></defs><style>${stylesheet.replaceAll("url(#steel)", `url(#${prefix}-steel)`).replaceAll("url(#vinyl)", `url(#${prefix}-vinyl)`).replaceAll("url(#shirt)", `url(#${prefix}-shirt)`).replaceAll("url(#skin)", `url(#${prefix}-skin)`).replaceAll("url(#hatch)", `url(#${prefix}-hatch)`)}
+    return `<defs><linearGradient id="${prefix}-steel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d4d7d5"/><stop offset=".45" stop-color="#858b89"/><stop offset="1" stop-color="#555b5a"/></linearGradient><linearGradient id="${prefix}-vinyl" x1="0" y1="0" x2="0.8" y2="1"><stop stop-color="#a8acab"/><stop offset="1" stop-color="#606766"/></linearGradient><linearGradient id="${prefix}-skin" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f5d6b7"/><stop offset=".45" stop-color="#d6a984"/><stop offset="1" stop-color="#aa7057"/></linearGradient><linearGradient id="${prefix}-active-muscle" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffb08d"/><stop offset=".55" stop-color="#f06b4d"/><stop offset="1" stop-color="#c74731"/></linearGradient><pattern id="${prefix}-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><path d="M0 0V7" stroke="#65716a" stroke-width=".6" opacity=".28"/></pattern></defs><style>${stylesheet.replaceAll("url(#steel)", `url(#${prefix}-steel)`).replaceAll("url(#vinyl)", `url(#${prefix}-vinyl)`).replaceAll("url(#skin)", `url(#${prefix}-skin)`).replaceAll("url(#active-muscle)", `url(#${prefix}-active-muscle)`).replaceAll("url(#hatch)", `url(#${prefix}-hatch)`)}
       .motion-head{fill:#c45f49}</style><marker id="${prefix}-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#c45f49"/></marker>`;
   }
 
@@ -53,7 +60,21 @@
     return `<path class="${className}" d="${path}"/><path class="echo" d="${path}" transform="translate(.8 .7)"/>`;
   }
 
-  function person(scene, phase) {
+  function muscleDetail(target) {
+    const details = {
+      chest: `<path d="M80 52Q85 48 92 52L92 62Q86 61 80 59Z" class="muscle"/><path d="M93 52Q99 49 103 54L101 61L93 62Z" class="muscle"/><path d="M82 54Q87 52 90 55M96 54l4 1" class="muscle-line"/>`,
+      shoulders: `<path d="M76 51Q79 47 84 50L87 56L83 62L77 59Z" class="muscle"/><path d="M98 51Q102 47 106 51L106 58L101 62L96 56Z" class="muscle"/>`,
+      rearShoulders: `<path d="M77 50Q82 47 86 52L84 59L78 60Z" class="muscle"/><path d="M98 52Q102 47 106 50L105 59L100 61Z" class="muscle"/><path d="M82 55Q90 57 99 54" class="muscle-line"/>`,
+      back: `<path d="M80 51Q84 47 90 51L94 60L90 67L82 63Z" class="muscle"/><path d="M95 51Q101 48 103 54L100 66L94 62Z" class="muscle"/><path d="M84 54l5 8m7-8-2 9" class="muscle-line"/>`,
+      biceps: `<path d="M77 54Q81 50 85 55L87 63L82 66L78 61Z" class="muscle"/><path d="M99 54Q103 50 106 55L105 62L100 66L97 60Z" class="muscle"/>`,
+      triceps: `<path d="M76 54Q81 50 85 55L85 64L79 65Z" class="muscle"/><path d="M100 54Q104 50 107 55L107 63L101 66Z" class="muscle"/>`,
+      core: `<path d="M85 62Q90 61 94 63L94 68L86 69ZM86 70L94 70L94 75L86 75ZM95 63L100 62L101 68L95 68ZM95 70L101 69L100 75L95 75Z" class="muscle"/>`,
+      legs: `<path d="M87 83Q95 84 101 89L104 97L98 99L90 92Z" class="muscle"/><path d="M104 97L112 100L121 115L115 118L106 108Z" class="muscle"/>`
+    };
+    return details[target] || details.chest;
+  }
+
+  function person(scene, phase, key) {
     const arms = scene[phase];
     const coordinates = [...arms.matchAll(/-?\d+(?:\.\d+)?/g)].map(match => Number(match[0]));
     const handX = coordinates[coordinates.length - 2];
@@ -72,17 +93,17 @@
       ? `<path class="shoe" d="M131 112l10 2 5 5-13 1zM77 117l8-2 5 4-12 3z"/>`
       : `<path class="shoe" d="M118 117l7 2 7 6-16 1zM74 116l8 1 4 6-14 1z"/>`;
     const head = `<path d="M83 32Q84 22 94 23Q104 25 101 37L97 45L86 43Z" class="skin"/><path d="M83 32Q84 22 94 23Q101 24 101 31Q95 27 89 31L86 38Z" fill="#3b3d35" stroke="#354446" stroke-width="1.5"/><path d="M99 35l4 2-4 2" class="ink"/>`;
-    const shirt = `<path d="${torso}" class="body"/><path d="M82 53Q90 57 100 53M84 69Q92 72 102 68" class="scribble"/><path d="M80 49L75 54M98 50L104 54" class="ink"/><path d="M87 59Q91 62 96 59" class="scribble"/>`;
+    const shirt = `<path d="${torso}" class="body"/><path d="M80 49L75 54M98 50L104 54" class="ink"/><path d="M87 59Q91 62 96 59M84 69Q92 72 102 68" class="muscle-line"/>`;
     const pants = `<path d="${legs}" class="pants"/><path d="${legs}" class="pants-line"/>${feet}`;
     const armsSvg = `<path d="${arms}" class="limb-back" transform="translate(184 0) scale(-1 1)"/><path d="${arms}" class="limb-back"/><path d="${arms}" class="limb-line"/><path d="${arms}" class="limb-line" transform="translate(184 0) scale(-1 1)"/><ellipse cx="${handX}" cy="${handY}" rx="4.7" ry="3.5" class="hand"/><ellipse cx="${oppositeHandX}" cy="${handY}" rx="4.7" ry="3.5" class="hand"/>`;
-    return `${echoPath("M24 147Q77 143 147 147", "scribble")}<ellipse cx="96" cy="145" rx="48" ry="5" class="shade"/>${pants}${shirt}${armsSvg}${head}`;
+    return `<g transform="translate(-9.2 -9) scale(1.1)">${echoPath("M24 147Q77 143 147 147", "scribble")}<ellipse cx="96" cy="145" rx="48" ry="5" class="shade"/>${pants}${shirt}${muscleDetail(targets[key])}${armsSvg}${head}</g>`;
   }
 
   function renderPanel(key, phase, scene, label, caption, index) {
     const prefix = `${key}-${phase}`;
     const equipmentSvg = equipment[scene.machine] || equipment.press;
     const motionPath = arrows[key] || arrows.chest;
-    return `<figure class="pose-card"><svg viewBox="0 0 180 164" role="img" aria-label="${label} : ${caption}">${defs(prefix)}<rect class="paper" x="0" y="0" width="180" height="164"/><path class="grain" d="M0 0h180v164H0z"/><path d="M8 151Q61 148 169 152" class="scribble"/><g opacity=".28" transform="translate(.8 .7)">${equipmentSvg}</g>${equipmentSvg}${person(scene, phase)}<path class="motion" d="${motionPath}" marker-end="url(#${prefix}-arrow)"/><path d="M15 17l5-3m138 136 7 2M18 127l4-2" class="scribble"/></svg><figcaption class="pose-caption"><span class="pose-number">0${index}</span><span><strong>${label}</strong><small>${caption}</small></span></figcaption></figure>`;
+    return `<figure class="pose-card"><svg viewBox="0 0 180 164" role="img" aria-label="${label} : ${caption}">${defs(prefix)}<rect class="paper" x="0" y="0" width="180" height="164"/><path class="grain" d="M0 0h180v164H0z"/><path d="M8 151Q61 148 169 152" class="scribble"/><g opacity=".28" transform="translate(.8 .7)">${equipmentSvg}</g>${equipmentSvg}${person(scene, phase, key)}<path class="motion" d="${motionPath}" marker-end="url(#${prefix}-arrow)"/><path d="M15 17l5-3m138 136 7 2M18 127l4-2" class="scribble"/></svg><figcaption class="pose-caption"><span class="pose-number">0${index}</span><span><strong>${label}</strong><small>${caption}</small></span></figcaption></figure>`;
   }
 
   window.drawExerciseIllustration = key => {
