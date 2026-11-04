@@ -72,7 +72,7 @@
     $("next-button").addEventListener("click",()=>{stopClock();const ex=machines[activeKey];if(setNumber<ex.sets){setNumber++;state="rest";restLeft=restDuration;$("timer-heading").textContent=`Série ${setNumber} / ${ex.sets}`;$("timer-state").textContent="Repos · hydrate-toi et prépare la suite.";$("start-button").disabled=true;$("pause-button").disabled=true;$("next-button").disabled=true;updateClock();speak(`Repos de ${restDuration} secondes.`);interval=setInterval(()=>{restLeft--;updateClock();if(restLeft<=0)finishRest()},1000)}else{state="ready";elapsed=0;setNumber=1;$("timer-heading").textContent="Exercice terminé";$("timer-state").textContent="Choisis un autre exercice dans la liste.";$("start-button").disabled=true;$("pause-button").disabled=true;$("next-button").disabled=true;updateClock();speak("Exercice terminé. Bravo.")}});
     $("voice-button").addEventListener("click",()=>speak(`${machines[activeKey].name}. ${machines[activeKey].desc} ${machines[activeKey].cue}`));
     renderList();showExercise("chest");
-    if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+    if("serviceWorker" in navigator){const hadController=Boolean(navigator.serviceWorker.controller);let reloading=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(hadController&&!reloading){reloading=true;window.location.reload()}});window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").then(registration=>registration.update()).catch(()=>{}))}
   </script>
 </body>
 </html>
