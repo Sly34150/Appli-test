@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "GymSimple — entraînement guidé",
+  "short_name": "GymSimple",
+  "description": "Séances de musculation guidées, sans compte ni suivi.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#101b1d",
+  "theme_color": "#101b1d",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
