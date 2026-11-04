@@ -11,13 +11,13 @@ Application web installable (PWA) pour guider des séances de musculation. Elle 
 
 Pour les consignes vocales hors ligne, télécharger une voix française dans les paramètres de synthèse vocale du téléphone. La disponibilité dépend du moteur vocal installé.
 
-## Publication avec GitHub Pages
+## Publication automatique avec GitHub Actions
 
-1. Envoyer ces fichiers dans un dépôt GitHub.
-2. Dans **Settings → Pages**, choisir **Deploy from a branch**.
-3. Sélectionner la branche principale et le dossier `/ (root)`, puis enregistrer.
+1. Envoyer le workflow `.github/workflows/pages.yml` et les fichiers de l'application sur GitHub.
+2. Dans **Settings → Pages**, choisir **GitHub Actions** comme source de compilation et de déploiement.
+3. Envoyer un commit sur la branche `main`, ou lancer manuellement **Actions → Publier GymSimple sur GitHub Pages → Run workflow**.
 
-GitHub Pages sert `index.html` et les fichiers PWA sans étape de compilation ni dépendance externe.
+Le workflow publie automatiquement les fichiers statiques à chaque mise à jour de `main`. Aucun outil de compilation ni dépendance externe n'est nécessaire. Le site reste accessible à l'adresse https://sly34150.github.io/Appli-test/.
 
 ## Lancer localement
 
